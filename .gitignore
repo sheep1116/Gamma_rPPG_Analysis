@@ -38,13 +38,13 @@ id_ed25519*
 *.token
 
 # Raw data, model weights and experiment outputs live outside the repository
-data/
-datasets/
-models/
-weights/
-results/
-Result/
-outputs/
+/data/
+/datasets/
+/models/
+/weights/
+/results/
+/Result/
+/outputs/
 logs/
 cache/
 roi_cache/
