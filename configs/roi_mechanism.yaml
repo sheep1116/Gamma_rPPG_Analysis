@@ -1,0 +1,71 @@
+# Standalone analysis of existing gamma_rppg_project_v5 result tables.
+# Plot text is English to avoid missing Chinese fonts on Linux servers.
+
+result_root: ${GAMMA_RESULT_ROOT:-~/Result}/GammaBrightness_rPPG_v5
+output_subdir: roi_gamma_mechanism_analysis
+random_seed: 20260701
+bootstrap_iterations: 2000
+reuse_existing_baseline_statistics: true
+minimum_correlation_n: 8
+minimum_group_n: 3
+minimum_within_video_points: 4
+max_features_per_pair: 5
+
+# If empty, every dataset folder found under pre_roi_gamma is analysed.
+datasets: []
+# If empty, every method found in the tables is analysed.
+methods: []
+
+response_groups:
+  positive: positive_sensitive
+  reference: stable
+
+# Representative, interpretable ROI feature set. Highly redundant features are omitted.
+core_features:
+  - roi_luma_mean
+  - roi_luma_p95
+  - roi_luma_p95_minus_p05
+  - temporal_luma_cv
+  - temporal_g_cv
+  - temporal_g_std
+  - p95_frame_to_frame_luma_change
+  - mean_frame_to_frame_luma_change
+  - spatial_luma_std
+  - rejected_bright_pixel_ratio
+  - rejected_dark_pixel_ratio
+  - valid_pixel_ratio_mean
+  - bright_ratio_235
+  - sat_ratio_245
+  - r_over_g
+  - b_over_g
+
+# Features used for the Gamma-mechanism curves and heatmaps.
+mechanism_features:
+  - valid_pixel_ratio_mean
+  - rejected_dark_pixel_ratio
+  - rejected_bright_pixel_ratio
+  - temporal_luma_cv
+  - temporal_g_cv
+  - p95_frame_to_frame_luma_change
+  - spatial_luma_std
+  - roi_luma_p95_minus_p05
+
+# Pairs given priority when selecting detailed figures. Significant pairs are added automatically.
+priority_pairs:
+  UBFC2: [CHROM, GREEN, PBV]
+  PURE: [GREEN, PBV, CHROM]
+  LGI_PPGI: [GREEN]
+
+auto_include_significant_pairs: true
+make_all_forest_plots: true
+make_scatter_plots: true
+make_group_plots: true
+make_mechanism_curves: true
+make_heatmaps: true
+make_pixel_composition_plots: true
+make_failure_plots: true
+make_consensus_plots: true
+
+# Plot export
+figure_dpi: 180
+figure_format: png

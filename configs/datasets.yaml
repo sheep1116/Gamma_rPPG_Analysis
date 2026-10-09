@@ -1,0 +1,45 @@
+# Shared dataset layout; override video_indices in quick configurations.
+datasets:
+  UBFC2:
+    name: UBFC2
+    video_DIR: ${GAMMA_DATA_ROOT:-/tank/数据集}/UBFC/UBFC2
+    BVP_DIR: ${GAMMA_DATA_ROOT:-/tank/数据集}/UBFC/UBFC2
+    video_indices: all
+
+  LGI_PPGI:
+    name: LGI_PPGI
+    video_DIR: ${GAMMA_DATA_ROOT:-/tank/数据集}/LGI_PPGI
+    BVP_DIR: ${GAMMA_DATA_ROOT:-/tank/数据集}/LGI_PPGI
+    video_indices: all
+
+  PURE:
+    name: PURE
+    loader: pure_multi
+    video_indices: all
+    prefer_avi: true
+    allow_frames_fallback: false
+    sources:
+      - label: PURE_Steady
+        motion_type: Steady
+        video_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Steady/"
+        BVP_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Steady/"
+      - label: PURE_Talking
+        motion_type: Talking
+        video_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Talking/"
+        BVP_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Talking/"
+      - label: PURE_Slow_Translation
+        motion_type: Slow Translation
+        video_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Slow Translation/"
+        BVP_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Slow Translation/"
+      - label: PURE_Fast_Translation
+        motion_type: Fast Translation
+        video_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Fast Translation/"
+        BVP_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Fast Translation/"
+      - label: PURE_Small_Rotation
+        motion_type: Small Rotation
+        video_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Small Rotation/"
+        BVP_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Small Rotation/"
+      - label: PURE_Medium_Rotation
+        motion_type: Medium Rotation
+        video_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Medium Rotation/"
+        BVP_DIR: "${GAMMA_DATA_ROOT:-/tank/数据集}/PURE/PURE_Medium Rotation/"

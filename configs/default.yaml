@@ -1,0 +1,2 @@
+# Legacy ROI configuration name.
+extends: roi_mechanism.yaml

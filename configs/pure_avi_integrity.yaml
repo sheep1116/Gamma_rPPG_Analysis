@@ -1,0 +1,20 @@
+# Standalone PURE AVI diagnostic; never called by the experiment loop.
+extends: datasets.yaml
+
+pure_avi_check:
+  expected_fps: 30
+  expected_duration_seconds: 30
+  duration_tolerance_seconds: 1.0
+  fps_tolerance: 0.5
+  signal_sample_rate: 60
+  decode_all_frames: true
+  compare_with_json_duration: true
+
+output:
+  root: ${GAMMA_RESULT_ROOT:-~/Result}
+  experiment_name: GammaBrightness_rPPG_v5
+  folders:
+    pre_roi_gamma: pre_roi_gamma
+    post_roi_analyse: post_roi_analyse
+    diagnostics: diagnostics
+    pure_avi_check: diagnostics/PURE_AVI_CHECK

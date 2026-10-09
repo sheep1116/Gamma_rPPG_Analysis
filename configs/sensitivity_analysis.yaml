@@ -1,0 +1,31 @@
+source_pre_roi_config: configs/full_pre_roi_experiment.yaml
+
+# Post-processing only: analyse pre_roi_gamma sensitivity and baseline ROI features.
+analysis:
+  baseline_gamma: 1.0
+  bootstrap_iterations: 2000
+  random_seed: 2026
+
+sensitivity:
+  min_absolute_mae_improvement: 0.2
+  min_relative_mae_improvement: 0.05
+  require_adjacent_gamma_support: true
+  stable_mae_epsilon: 0.2
+  min_valid_windows: 10
+  correlation_bootstrap_iterations: 500
+
+sensitivity_cases:
+  enabled: true
+  multi_method_positive_only: true
+  max_cases_per_dataset: 30
+  generate_signal_diagnostics: true
+  max_signal_diagnostic_cases: 10
+
+output:
+  root: ${GAMMA_RESULT_ROOT:-~/Result}
+  experiment_name: GammaBrightness_rPPG_v5
+  folders:
+    pre_roi_gamma: pre_roi_gamma
+    post_roi_analyse: post_roi_analyse
+    diagnostics: diagnostics
+    pure_avi_check: diagnostics/PURE_AVI_CHECK

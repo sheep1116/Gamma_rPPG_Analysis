@@ -1,0 +1,2 @@
+# Compatibility with the original installation command; one shared dependency list.
+-r requirements-dev.txt

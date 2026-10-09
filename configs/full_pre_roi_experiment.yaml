@@ -1,0 +1,45 @@
+# v5 formal pre-ROI experiment. PURE uses AVI strictly by default.
+extends: datasets.yaml
+
+run:
+  datasets: [UBFC2, LGI_PPGI, PURE]
+  methods: [CHROM, POS, GREEN, LGI, PBV, OMIT]
+
+experiment:
+  output_subdir: pre_roi_gamma
+  transform_mode: pre_roi_gamma
+  gamma_values: [1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.8]
+  seconds: 30
+  wsize: 8
+  step: 1
+  prefer_cuda: true
+  cuda_device: 0
+  skin_extractor_device: GPU
+  collect_brightness: true
+  bp_filter:
+    order: 6
+    minHz: 0.65
+    maxHz: 4.0
+
+analysis:
+  baseline_gamma: 1.0
+  bootstrap_iterations: 2000
+  random_seed: 2026
+  statistical_metrics: [MAE, SNR]
+  quality_thresholds:
+    min_face_detection_ratio: 0.80
+    min_geometric_roi_frame_ratio: 0.80
+    min_valid_pixel_ratio: 0.10
+  quality_examples:
+    enabled: true
+    gammas: [1.0, 2.0, 2.8]
+    max_samples_per_dataset: 3
+
+output:
+  root: ${GAMMA_RESULT_ROOT:-~/Result}
+  experiment_name: GammaBrightness_rPPG_v5
+  folders:
+    pre_roi_gamma: pre_roi_gamma
+    post_roi_analyse: post_roi_analyse
+    diagnostics: diagnostics
+    pure_avi_check: diagnostics/PURE_AVI_CHECK

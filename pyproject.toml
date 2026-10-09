@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gamma-rppg-analysis"
+version = "0.7.0"
+description = "Gamma/rPPG experiments and ROI response mechanism analysis"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["gamma_rppg*", "src*"]
+
+[tool.setuptools.package-data]
+"gamma_rppg.analysis.roi_mechanism" = ["default.yaml"]
+
+[project.optional-dependencies]
+test = ["pytest>=7,<9"]
+
+[project.scripts]
+gamma-rppg-roi = "gamma_rppg.analysis.roi_mechanism.cli:main"

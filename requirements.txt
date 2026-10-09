@@ -1,0 +1,6 @@
+# Shared CPU analysis dependencies. Keep NumPy compatible with the existing GPU stack.
+numpy>=1.22.4,<2
+pandas>=1.5,<3
+scipy>=1.9,<2
+matplotlib>=3.6,<4
+PyYAML>=6.0,<7

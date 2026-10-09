@@ -1,0 +1,43 @@
+source_pre_roi_config: configs/full_pre_roi_experiment.yaml
+
+analysis:
+  baseline_gamma: 1.0
+  random_seed: 2026
+
+case_mechanism:
+  # Fig. 4 uses only these fixed representative cases; no automatic dataset-wide selection.
+  explicit_cases:
+    - dataset: UBFC2
+      sample_uid: UBFC2/subject8/vid.avi
+      method: GREEN
+      category: positive
+      target_gamma: 2.6
+      response_type: positive_sensitive
+      reason: representative positive response in Fig. 4
+    - dataset: UBFC2
+      sample_uid: UBFC2/subject31/vid.avi
+      method: POS
+      category: stable
+      target_gamma: 2.8
+      response_type: stable
+      reason: representative stable response in Fig. 4
+    - dataset: PURE
+      sample_uid: PURE/PURE_Fast_Translation/01-04
+      method: CHROM
+      category: failure
+      target_gamma: 2.8
+      response_type: failure
+      reason: representative high-Gamma failure boundary in Fig. 4
+  max_histogram_frames: 180
+  frame_stride: 3
+  max_luma_pixels_per_gamma: 250000
+
+output:
+  root: ${GAMMA_RESULT_ROOT:-~/Result}
+  experiment_name: GammaBrightness_rPPG_v6
+  folders:
+    pre_roi_gamma: pre_roi_gamma
+    post_roi_analyse: post_roi_analyse
+    diagnostics: diagnostics
+    pure_avi_check: diagnostics/PURE_AVI_CHECK
+    case_mechanism_figures: case_mechanism_figures
